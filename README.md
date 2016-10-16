@@ -2,13 +2,13 @@
 
 "macrofab.com" is an intriguing service. This script allows you to generate XYRS file
 for KiCad designs. Instead of loading *.kicad_pcb file into macrofab, you can instead 
-load *.xyrs flie into macrofab to allow it to figure out the BOM and part placement.
+load *.xyrs file into macrofab to allow it to figure out the BOM and part placement.
 
 Part placement can be figured out from just the *.kicad_pcb file but this file does not contain
 extra part attributes. If you add an MPN (Manufacturer Part Number) attribute on the items in the
-schematic, this part attribute is dropped in kicad_pcb file. Macrofab documentation tells us that
+schematic, this attribute is dropped in kicad_pcb file. Macrofab documentation tells us that
 MPN is a special column in XYRS file. This field allows it to suggest part numbers as you review
-the BOM. This saves a lot of time when you review the BOM on a design.
+the BOM. This saves a lot of time.
 
 So the solution is to look at both the *.kicad_pcb and *.net files to generate the XYRS file.
 
@@ -26,7 +26,7 @@ C:\Tools\KiCad\bin\python.exe gen_xyrs.py -i cook.kicad_pcb
 ```
 
 For Linux, you need to figure it out. I have no idea how KiCad is installed on Linux. In addition, I have
-not figured out a way to successfuly run this script using a normal python installation.
+not figured out a way to successfully run this script using a normal python installation.
 
 
 Enjoy!
