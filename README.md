@@ -29,4 +29,7 @@ For Linux, you need to figure it out. I have no idea how KiCad is installed on L
 not figured out a way to successfully run this script using a normal python installation.
 
 
+TODO:
+1) Read a NOPOP attribute in .net file
+
 Enjoy!
