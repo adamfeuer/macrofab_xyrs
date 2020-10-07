@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #-------------------------------------------------------------------------------
 # Copyright (C) 09/2016 Eyob Demissie
 # 
@@ -106,7 +107,7 @@ def read_net(net_file):
         if ("(comp " in line) and (not found_comp):
             found_comp = True
         if found_comp:
-            #print line.strip()
+            #print(line.strip())
             if "(ref" in line:
                 line_sep = line.split()
                 current_component["ref"] = line_sep[2].strip(")").strip("(")
@@ -115,14 +116,20 @@ def read_net(net_file):
                 current_component["part"] = line_sep[4].strip(")").strip("(")
             elif "(value " in line:
                 line_sep = line.split()
-                current_component["value"] = line_sep[1].strip(")").strip("(")
+                #print(f"::{line_sep}")
+                #if len(line_sep) > 2:
+                #    print(f"::{line_sep[1:]}")
+                new_value = " ".join(line_sep[1:])
+                #current_component["value"] = line_sep[1].strip(")").strip("(").replace('"','')
+                current_component["value"] = new_value.strip(")").strip("(").strip('"')
+                #print(current_component["value"])
             elif "(name MPN" in line:
                 line_sep = line.split()
                 current_component["mpn"] = line_sep[3].strip(")").strip("(")
             for c in line:
-                if c is "(":
+                if c == "(":
                     brace_level += 1
-                if c is ")":
+                if c == ")":
                     brace_level -= 1
             if brace_level <= 0:
                 #print current_component
@@ -150,9 +157,9 @@ def read_net(net_file):
                 line_sep = line.split()
                 current_part["mpn"] = line_sep[3].strip(")").strip("(")
             for c in line:
-                if c is "(":
+                if c == "(":
                     brace_level += 1
-                if c is ")":
+                if c == ")":
                     brace_level -= 1
             if brace_level <= 0:
                 #print current_part
@@ -175,6 +182,8 @@ def gen_xyrs(mods, comps, parts):
     for r in sorted(refs):
         if mods[r]["VALUE"] != comps[r]["value"]:
             print("Error net value does not match pcb value for %s" % r)
+            #print(mods[r]["VALUE"])
+            #print(comps[r]["value"])
             sys.exit(1)
         fragment = (("%(DESIGNATOR)s\t%(X_LOC)7.2f\t%(Y_LOC)7.2f\t%(ROTATION)7.1f\t%(SIDE)s\t%(TYPE)s\t"
                     "%(X_SIZE)7.2f\t%(Y_SIZE)7.2f\t %(VALUE)s\t%(FOOTPRINT)s\t%(POPULATE)s") % mods[r])

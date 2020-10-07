@@ -25,8 +25,13 @@ C:\Tools\KiCad\bin\python.exe gen_xyrs.py -i cook.kicad_pcb -o ./xyrs/cook.xyrs
 C:\Tools\KiCad\bin\python.exe gen_xyrs.py -i cook.kicad_pcb
 ```
 
-For Linux, you need to figure it out. I have no idea how KiCad is installed on Linux. In addition, I have
-not figured out a way to successfully run this script using a normal python installation.
+
+###Linux
+
+On Linux, using KiCAD 5.1.7, I can do the following:
+
+    export PYTHONPATH=/usr/share/kicad/scripting:/usr/share/kicad/scripting/plugins:/usr/share/kicad/scripting:/usr/share/kicad/scripting/plugins
+    python gen_xyrs.py -i my_board.kicad_pcb -o my_board.xyrs 
 
 
 TODO:
